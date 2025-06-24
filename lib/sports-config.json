@@ -1,0 +1,56 @@
+{
+  "baby-foot": {
+    "manches": 3,
+    "points_to_win": 7,
+    "positions": ["attaquant", "défenseur"],
+    "adversaires_max": 2
+  },
+  "tennis": {
+    "manches": 3,
+    "points_to_win": 6,
+    "positions": [],
+    "adversaires_max": 1
+  },
+  "ping-pong": {
+    "manches": 5,
+    "points_to_win": 11,
+    "positions": [],
+    "adversaires_max": 1
+  },
+  "badminton": {
+    "manches": 3,
+    "points_to_win": 21,
+    "positions": [],
+    "adversaires_max": 1
+  },
+  "padel": {
+    "manches": 3,
+    "points_to_win": 6,
+    "positions": ["joueur 1", "joueur 2"],
+    "adversaires_max": 2
+  },
+  "squash": {
+    "manches": 5,
+    "points_to_win": 11,
+    "positions": [],
+    "adversaires_max": 1
+  },
+  "boxe": {
+    "manches": 3,
+    "points_to_win": null,
+    "positions": [],
+    "adversaires_max": 1
+  },
+  "escrime": {
+    "manches": 3,
+    "points_to_win": 15,
+    "positions": [],
+    "adversaires_max": 1
+  },
+  "tennis de table": {
+    "manches": 5,
+    "points_to_win": 11,
+    "positions": [],
+    "adversaires_max": 1
+  }
+}
