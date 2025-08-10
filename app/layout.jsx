@@ -22,6 +22,8 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@600&family=Roboto+Condensed:wght@900&family=Squada+One&display=swap"
           rel="stylesheet"
         />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/log.ico" />
       </head>
       <body
         style={{
