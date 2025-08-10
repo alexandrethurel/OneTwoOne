@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import theme from '../../lib/theme';
 
 const SPORT_CONFIG = {
-  'baby-foot': { manches: 3, points_to_win: 7, adversaires_max: 2 },
+  'baby-foot': { manches: 1, points_to_win: 7, adversaires_max: 2 },
   tennis: { manches: 3, points_to_win: 6, adversaires_max: 1 },
   'ping-pong': { manches: 5, points_to_win: 11, adversaires_max: 1 },
   badminton: { manches: 3, points_to_win: 21, adversaires_max: 1 },

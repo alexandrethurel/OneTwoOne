@@ -1,6 +1,6 @@
 {
   "baby-foot": {
-    "manches": 3,
+    "manches": 1,
     "points_to_win": 7,
     "positions": ["attaquant", "défenseur"],
     "adversaires_max": 2
