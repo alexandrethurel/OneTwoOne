@@ -8,7 +8,10 @@ import Navbar from '../../components/Navbar';
 import RankingTable from '../../components/ranking/RankingTable';
 
 export default function RankingPage() {
-  const { user } = useUser();
+  const user = {
+    id: "00000000-0000-0000-0000-000000000000", // ID fixe qu’on garde
+    name: "Test User",
+  };
   const styles = theme.pages.hallOfFame;
   const [ranking, setRanking] = useState([]);
   const [sortBy, setSortBy] = useState('manches');
@@ -20,7 +23,7 @@ export default function RankingPage() {
       const { data: matches, error } = await supabase
         .from('matches')
         .select('opponents_names, user_scores, opponent_scores, manches')
-        .eq('user_id', user.id)
+        .eq('user_id', '00000000-0000-0000-0000-000000000000')
         .eq('validated', true);
 
       if (error) {

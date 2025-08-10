@@ -3,9 +3,8 @@
 import { useState, useEffect } from 'react';
 import theme from '../../lib/theme';
 import { saveMatch } from '../../lib/supabase';
-import GoogleLoginModal from './GoogleLoginModal';
-import useUser from '../../lib/useUser';
 
+// Constantes de configuration par défaut
 const DEFAULT_CONFIG = { 
   sport: 'tennis', 
   points: 6, 
@@ -29,20 +28,15 @@ const sanitizeOpponentName = (value) => {
 export default function MatchForm() {
   const styles = theme.forms.matchForm;
 
-  const { user } = useUser();
-  const [userEmail, setUserEmail] = useState('');
+  const [userEmail, setUserEmail] = useState('');  // Pas besoin de "user", on utilise directement un e-mail
   const [config, setConfig] = useState(DEFAULT_CONFIG);
   const [scores, setScores] = useState([]);
   const [opponents, setOpponents] = useState({});
   const [message, setMessage] = useState({ text: '', type: '' });
-  const [showLoginModal, setShowLoginModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Charge la configuration depuis le localStorage
   useEffect(() => {
-    if (user?.email) {
-      setUserEmail(user.email);
-    }
-
     const savedConfig = localStorage.getItem('match_config');
     if (savedConfig) {
       try {
@@ -56,7 +50,7 @@ export default function MatchForm() {
     } else {
       initializeScores(DEFAULT_CONFIG.sets);
     }
-  }, [user]);
+  }, []);
 
   const initializeScores = (setsCount) => {
     const initialScores = Array.from({ length: setsCount }, (_, i) => ({
@@ -99,12 +93,6 @@ export default function MatchForm() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    if (!user) {
-      setShowLoginModal(true);
-      setIsSubmitting(false);
-      return;
-    }
-
     try {
       if (scores.some(score => score.player1 === '' || score.player2 === '')) {
         showMessage('❌ Veuillez remplir tous les scores', 'error');
@@ -115,8 +103,11 @@ export default function MatchForm() {
         .filter(Boolean)
         .map(sanitizeOpponentName);
 
+      // Faux UUID fixe
+      const userId = '00000000-0000-0000-0000-000000000000';  // Faux UUID
+
       const matchData = {
-        user_id: user.id,
+        user_id: userId,  // Utiliser l'UUID fixe
         sport_name: config.sport,
         match_date: new Date().toISOString(),
         manches: Number(config.sets),
@@ -230,17 +221,6 @@ export default function MatchForm() {
           ADVERSAIRES: {config.opponents}
         </div>
       </form>
-
-      {showLoginModal && (
-        <GoogleLoginModal 
-          onClose={() => setShowLoginModal(false)} 
-          onLoginSuccess={(user) => {
-            localStorage.setItem('userEmail', user.email);
-            setUserEmail(user.email);
-            setShowLoginModal(false);
-          }}
-        />
-      )}
     </>
   );
 }
